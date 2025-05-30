@@ -2,6 +2,7 @@
 import Box from '@/components/Puzzle/Box/Box';
 import Button from '@/components/ui/Button/Button';
 import styles from './page.module.css';
+import { useState } from 'react';
 
 export default function Home() {
   return (
