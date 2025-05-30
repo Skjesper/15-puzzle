@@ -3,13 +3,13 @@ import React from 'react';
 
 interface ButtonProps {
     children: React.ReactNode;
-    variant?: 'desktop' | 'mobile';
+    variant?: 'm' | 'l';
     onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
     children,
-    variant = 'mobile',
+    variant = 'm',
     onClick
 }) => {
   return (
