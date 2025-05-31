@@ -8,8 +8,8 @@ const openSans = Open_Sans ({
 });
 
 export const metadata: Metadata = {
-  title: "n-pussle",
-  description: "n-pussle test for Grebban",
+  title: "n-pussel",
+  description: "n-pussel test for Grebban",
 };
 
 export default function RootLayout({
