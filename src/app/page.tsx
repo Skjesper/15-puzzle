@@ -10,24 +10,29 @@ const { TOTAL_TILES, COLS } = PUZZLE_CONFIG;
 
 export default function Home() {
 
- const createInitialGrid = (): number[] => {
-   const grid: number[] = [];
-   for (let i = 1; i < TOTAL_TILES; i++) {
-     grid.push(i);
-   }
-   grid.push(0); 
-   return grid;
- };
+  
+  
+  const shuffleArray = (array: number[]): number[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+  
+  const createInitialGrid = (): number[] => {
+    const grid: number[] = [];
+    for (let i = 1; i < TOTAL_TILES; i++) {
+      grid.push(i);
+    }
+    grid.push(0);
+    return shuffleArray(grid);
+  };
+  const [grid, setGrid] = useState<number[]>(createInitialGrid());
 
- const [grid, setGrid] = useState<number[]>(createInitialGrid());
-
- const shuffleGrid = () => {
-  const shuffled = [...grid];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  setGrid(shuffled);
+const shuffleGrid = () => {
+  setGrid(shuffleArray(grid));
 };
 
 const handleTileClick = (index: number) => {
