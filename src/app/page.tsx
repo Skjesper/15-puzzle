@@ -21,6 +21,15 @@ export default function Home() {
 
  const [grid, setGrid] = useState<number[]>(createInitialGrid());
 
+ const shuffleGrid = () => {
+  const shuffled = [...grid];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  setGrid(shuffled);
+};
+
 const handleTileClick = (index: number) => {
   const emptyIndex = grid.findIndex(value => value === 0);
   
@@ -56,7 +65,7 @@ console.log('Grid length:', grid.length);
          </Button>
        ))}
      </Box>
-     <Button variant='l'>Randomize</Button>
+     <Button variant='l' onClick={shuffleGrid}>Randomize</Button>
      </div>
    </div>
  );
