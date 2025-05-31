@@ -24,7 +24,7 @@ export default function Home() {
 const handleTileClick = (index: number) => {
   const emptyIndex = grid.findIndex(value => value === 0);
   
-  // Kolla om rutorna är intill varandra
+
   const distance = Math.abs(index - emptyIndex);
   const sameRow = Math.floor(index / COLS) === Math.floor(emptyIndex / COLS);
   const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
@@ -49,6 +49,7 @@ console.log('Grid length:', grid.length);
            key={index}
            variant='m'
            onClick={() => handleTileClick(index)}
+           disabled={value === 0}
          >
            {value === 0 ? '' : value}
          </Button>
