@@ -25,6 +25,11 @@ export default function Home() {
    console.log(`Klickade på position ${index}`);
  };
 
+
+ console.log('TOTAL_TILES:', TOTAL_TILES);
+console.log('Grid length:', grid.length);
+
+
  return (
    <div className={styles.container}>
      <Box>
