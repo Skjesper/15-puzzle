@@ -2,11 +2,17 @@
 
     background-color: blue;
     border-radius: 5px;
+   
+}
+
+.m {
+
     width: 4.5rem;
     height: 4.5rem;
 }
 
-.desktop {
+.l {
 
     padding: 0.5rem;
+    width: 80%;
 }

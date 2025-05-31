@@ -43,6 +43,7 @@ console.log('Grid length:', grid.length);
 
  return (
    <div className={styles.container}>
+    <div className={styles.gameContainer}>
      <Box>
        {grid.map((value, index) => (
          <Button 
@@ -55,6 +56,8 @@ console.log('Grid length:', grid.length);
          </Button>
        ))}
      </Box>
+     <Button variant='l'>Randomize</Button>
+     </div>
    </div>
  );
 }

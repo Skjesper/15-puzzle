@@ -5,3 +5,11 @@
   height: 100vh;
   width: 100%;
 }
+
+.gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+}
