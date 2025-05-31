@@ -22,11 +22,11 @@ export default function Home() {
  const [grid, setGrid] = useState<number[]>(createInitialGrid());
 
  const handleTileClick = (index: number) => {
-   console.log(`Klickade på position ${index}`);
+   console.log(`${index}`);
  };
 
-
- console.log('TOTAL_TILES:', TOTAL_TILES);
+// Test to see if the Total_tiles actually gets read
+console.log('TOTAL_TILES:', TOTAL_TILES);
 console.log('Grid length:', grid.length);
 
 
