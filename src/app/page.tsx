@@ -3,15 +3,13 @@
 import Box from '@/components/Puzzle/Box/Box';
 import Button from '@/components/ui/Button/Button';
 import styles from './page.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PUZZLE_CONFIG } from '@/config/puzzle';
 
 const { TOTAL_TILES, COLS } = PUZZLE_CONFIG;
 
 export default function Home() {
 
-  
-  
   const shuffleArray = (array: number[]): number[] => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -21,13 +19,14 @@ export default function Home() {
     return shuffled;
   };
   
+  // Skapa ordnat grid utan shuffling
   const createInitialGrid = (): number[] => {
     const grid: number[] = [];
     for (let i = 1; i < TOTAL_TILES; i++) {
       grid.push(i);
     }
     grid.push(0);
-    return shuffleArray(grid);
+    return grid; // Ingen shuffling här
   };
 
    const checkWin = (currentGrid: number[]): boolean => {
@@ -39,15 +38,24 @@ export default function Home() {
   const [grid, setGrid] = useState<number[]>(createInitialGrid());
   const [isWon, setIsWon] = useState(false);
 
+  // Shuffla efter mount för att undvika hydration mismatch
+  useEffect(() => {
+    const orderedGrid = [];
+    for (let i = 1; i < TOTAL_TILES; i++) {
+      orderedGrid.push(i);
+    }
+    orderedGrid.push(0);
+    setGrid(shuffleArray(orderedGrid));
+  }, []);
+
 const shuffleGrid = () => {
-  setGrid(shuffleArray(grid));
+  setGrid(shuffleArray([...grid]));
   setIsWon(false);
 };
 
 const handleTileClick = (index: number) => {
   const emptyIndex = grid.findIndex(value => value === 0);
   
-
   const distance = Math.abs(index - emptyIndex);
   const sameRow = Math.floor(index / COLS) === Math.floor(emptyIndex / COLS);
   const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
@@ -59,7 +67,6 @@ const handleTileClick = (index: number) => {
     setGrid(newGrid);
 
     if (checkWin(newGrid)) {
-
       setIsWon(true);
       alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again')
     }
@@ -69,7 +76,6 @@ const handleTileClick = (index: number) => {
  return (
    <div className={styles.container}>
     <div className={styles.gameContainer}>
-    {/* <h1 className={styles.puzzleHeader}>15 Pussel</h1> */}
      <Box>
        {grid.map((value, index) => (
          <Button 
