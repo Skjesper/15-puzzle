@@ -1,9 +1,17 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
+}
+
+.puzzleHeader {
+
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: black
 }
 
 .gameContainer {
