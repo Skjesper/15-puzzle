@@ -2,10 +2,10 @@
   display: grid;
   grid-template-columns: repeat(var(--grid-cols), 4.5rem);
   grid-template-rows: repeat(var(--grid-rows), 4.5rem);
-  gap: 2px;
-  padding: 8px;
-  background-color: #922323;
-  border: 2px solid #ccc;
+  gap: 5px;
+  padding: 1.5rem;
+  background-color: #ffb3ba;
+  border: 4px solid #ffffff;
   border-radius: 2px;
   
 }
@@ -14,5 +14,6 @@
   .box {
     grid-template-columns: repeat(var(--grid-cols), 3.5rem);
     grid-template-rows: repeat(var(--grid-rows), 3.5rem);
+
   }
 }

@@ -1,6 +1,6 @@
 .button {
 
-    background-color: blue;
+    background-color: #ff1f1f;
     border-radius: 5px;
     font-size: 2rem;
    
@@ -19,12 +19,22 @@
 
 }
 
+.button:disabled {
+
+    background-color: var(--background);
+}
+
 @media (max-width: 768px) {
 
     .m {
 
         width: 3.5rem;
         height: 3.5rem;
+    }
+
+    .button {
+
+        font-size: 1.7rem;
     }
 }
 
