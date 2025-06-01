@@ -29,10 +29,19 @@ export default function Home() {
     grid.push(0);
     return shuffleArray(grid);
   };
+
+   const checkWin = (currentGrid: number[]): boolean => {
+    return currentGrid.every((value, index) => 
+      index === currentGrid.length - 1 ? value === 0 : value === index + 1
+    );
+  };
+  
   const [grid, setGrid] = useState<number[]>(createInitialGrid());
+  const [isWon, setIsWon] = useState(false);
 
 const shuffleGrid = () => {
   setGrid(shuffleArray(grid));
+  setIsWon(false);
 };
 
 const handleTileClick = (index: number) => {
@@ -48,12 +57,14 @@ const handleTileClick = (index: number) => {
     newGrid[emptyIndex] = grid[index];
     newGrid[index] = 0;
     setGrid(newGrid);
+
+    if (checkWin(newGrid)) {
+
+      setIsWon(true);
+      alert('Congratz, you solved a very complicated puzzle!')
+    }
   }
 };
-
-console.log('TOTAL_TILES:', TOTAL_TILES);
-console.log('Grid length:', grid.length);
-
 
  return (
    <div className={styles.container}>
