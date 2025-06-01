@@ -1,0 +1,47 @@
+.button {
+
+    background-color: #ff1f1f;
+    border-radius: 5px;
+    font-size: 2rem;
+    border: 2px solid #333; 
+   
+}
+
+.m {
+
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.l {
+
+    padding: 0.5rem;
+    width: 80%;
+
+}
+
+
+.button:hover {
+    
+    opacity: 0.8;
+}
+
+.button:disabled {
+
+    background-color: var(--background);
+    opacity: 1;
+}
+@media (max-width: 768px) {
+
+    .m {
+
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .button {
+
+        font-size: 1.7rem;
+    }
+}
+

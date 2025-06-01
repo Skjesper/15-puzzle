@@ -1,95 +1,89 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import Box from '@/components/Puzzle/Box/Box';
+import Button from '@/components/ui/Button/Button';
+import styles from './page.module.css';
+import { useState } from 'react';
+import { PUZZLE_CONFIG } from '@/config/puzzle';
+
+const { TOTAL_TILES, COLS } = PUZZLE_CONFIG;
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  
+  
+  const shuffleArray = (array: number[]): number[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+  
+  const createInitialGrid = (): number[] => {
+    const grid: number[] = [];
+    for (let i = 1; i < TOTAL_TILES; i++) {
+      grid.push(i);
+    }
+    grid.push(0);
+    return shuffleArray(grid);
+  };
+
+   const checkWin = (currentGrid: number[]): boolean => {
+    return currentGrid.every((value, index) => 
+      index === currentGrid.length - 1 ? value === 0 : value === index + 1
+    );
+  };
+  
+  const [grid, setGrid] = useState<number[]>(createInitialGrid());
+  const [isWon, setIsWon] = useState(false);
+
+const shuffleGrid = () => {
+  setGrid(shuffleArray(grid));
+  setIsWon(false);
+};
+
+const handleTileClick = (index: number) => {
+  const emptyIndex = grid.findIndex(value => value === 0);
+  
+
+  const distance = Math.abs(index - emptyIndex);
+  const sameRow = Math.floor(index / COLS) === Math.floor(emptyIndex / COLS);
+  const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
+  
+  if (isAdjacent) {
+    const newGrid = [...grid];
+    newGrid[emptyIndex] = grid[index];
+    newGrid[index] = 0;
+    setGrid(newGrid);
+
+    if (checkWin(newGrid)) {
+
+      setIsWon(true);
+      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again')
+    }
+  }
+};
+
+ return (
+   <div className={styles.container}>
+    <div className={styles.gameContainer}>
+    {/* <h1 className={styles.puzzleHeader}>15 Pussel</h1> */}
+     <Box>
+       {grid.map((value, index) => (
+         <Button 
+           key={index}
+           variant='m'
+           onClick={() => handleTileClick(index)}
+           disabled={value === 0}
+         >
+           {value === 0 ? '' : value}
+         </Button>
+       ))}
+     </Box>
+     <Button variant='l' onClick={shuffleGrid}>Randomize</Button>
+     </div>
+   </div>
+ );
 }

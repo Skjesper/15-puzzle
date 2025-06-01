@@ -1,0 +1,19 @@
+.box {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 4.5rem);
+  grid-template-rows: repeat(var(--grid-rows), 4.5rem);
+  gap: 5px;
+  padding: 2rem;
+  background-color: #ffb3ba;
+  border-radius: 16px;
+  
+}
+
+@media (max-width: 768px) {
+  .box {
+    grid-template-columns: repeat(var(--grid-cols), 3.5rem);
+    grid-template-rows: repeat(var(--grid-rows), 3.5rem);
+    padding: 1.5rem;
+
+  }
+}
