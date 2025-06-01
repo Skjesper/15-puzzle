@@ -19,14 +19,13 @@ export default function Home() {
     return shuffled;
   };
   
-  // Skapa ordnat grid utan shuffling
   const createInitialGrid = (): number[] => {
     const grid: number[] = [];
     for (let i = 1; i < TOTAL_TILES; i++) {
       grid.push(i);
     }
     grid.push(0);
-    return grid; // Ingen shuffling här
+    return grid; 
   };
 
    const checkWin = (currentGrid: number[]): boolean => {
@@ -38,7 +37,7 @@ export default function Home() {
   const [grid, setGrid] = useState<number[]>(createInitialGrid());
   const [isWon, setIsWon] = useState(false);
 
-  // Shuffla efter mount för att undvika hydration mismatch
+  
   useEffect(() => {
     const orderedGrid = [];
     for (let i = 1; i < TOTAL_TILES; i++) {
