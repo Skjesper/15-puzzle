@@ -26,5 +26,6 @@ Arrange the numbered tiles in order (1, 2, 3...) by clicking on tiles adjacent t
 - Click-to-move tile mechanics
 - Randomize button to shuffle the puzzle
 - Win detection with congratulations message
+- Update the config file to decide if you want more rows or columns. 
 
 Enjoy solving the puzzle!
