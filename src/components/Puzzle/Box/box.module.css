@@ -7,4 +7,12 @@
   background-color: #922323;
   border: 2px solid #ccc;
   border-radius: 2px;
+  
+}
+
+@media (max-width: 768px) {
+  .box {
+    grid-template-columns: repeat(var(--grid-cols), 3.5rem);
+    grid-template-rows: repeat(var(--grid-rows), 3.5rem);
+  }
 }
