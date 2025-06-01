@@ -57,6 +57,7 @@ console.log('Grid length:', grid.length);
 
  return (
    <div className={styles.container}>
+    <h1 className={styles.puzzleHeader}>15 Pussel</h1>
     <div className={styles.gameContainer}>
      <Box>
        {grid.map((value, index) => (

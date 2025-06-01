@@ -3,6 +3,7 @@
     background-color: #ff1f1f;
     border-radius: 5px;
     font-size: 2rem;
+    border: 2px solid #333; 
    
 }
 
@@ -22,6 +23,11 @@
 .button:disabled {
 
     background-color: var(--background);
+}
+
+.button:hover {
+
+   opacity: 0.8;
 }
 
 @media (max-width: 768px) {
