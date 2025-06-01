@@ -61,15 +61,15 @@ const handleTileClick = (index: number) => {
     if (checkWin(newGrid)) {
 
       setIsWon(true);
-      alert('Congratz, you solved a very complicated puzzle!')
+      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again')
     }
   }
 };
 
  return (
    <div className={styles.container}>
-    <h1 className={styles.puzzleHeader}>15 Pussel</h1>
     <div className={styles.gameContainer}>
+    {/* <h1 className={styles.puzzleHeader}>15 Pussel</h1> */}
      <Box>
        {grid.map((value, index) => (
          <Button 
