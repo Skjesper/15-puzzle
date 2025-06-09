@@ -2,6 +2,7 @@
 
 import Box from '@/components/Puzzle/Box/Box';
 import Button from '@/components/ui/Button/Button';
+import Modal from '@/components/ui/Modal/Modal';
 import styles from './page.module.css';
 import { useState, useEffect } from 'react';
 import { PUZZLE_CONFIG } from '@/config/puzzle';
@@ -34,6 +35,7 @@ export default function Home() {
   };
   
   const [grid, setGrid] = useState<number[]>(createInitialGrid());
+  const [isModalOpen, setIsModalOpen] = useState(true);
   
   useEffect(() => {
     const orderedGrid = [];
@@ -46,78 +48,79 @@ export default function Home() {
 
   const shuffleGrid = () => {
     setGrid(shuffleArray([...grid]));
+    setIsModalOpen(false);
   };
 
-const handleTileClick = (index: number) => {
-  const emptyIndex = grid.findIndex(value => value === 0);
-  
-  const clickedRow = Math.floor(index / COLS);
-  const emptyRow = Math.floor(emptyIndex / COLS);
-  const clickedCol = index % COLS;
-  const emptyCol = emptyIndex % COLS;
-  
-  if (clickedRow === emptyRow) {
-    const newGrid = [...grid];
-    const rowStart = clickedRow * COLS;
+  const handleTileClick = (index: number) => {
+    const emptyIndex = grid.findIndex(value => value === 0);
     
-    if (clickedCol < emptyCol) {
-      for (let i = emptyCol - 1; i >= clickedCol; i--) {
-        newGrid[rowStart + i + 1] = newGrid[rowStart + i];
+    const clickedRow = Math.floor(index / COLS);
+    const emptyRow = Math.floor(emptyIndex / COLS);
+    const clickedCol = index % COLS;
+    const emptyCol = emptyIndex % COLS;
+    
+    if (clickedRow === emptyRow) {
+      const newGrid = [...grid];
+      const rowStart = clickedRow * COLS;
+      
+      if (clickedCol < emptyCol) {
+        for (let i = emptyCol - 1; i >= clickedCol; i--) {
+          newGrid[rowStart + i + 1] = newGrid[rowStart + i];
+        }
+        newGrid[index] = 0;
+      } else {
+        for (let i = emptyCol + 1; i <= clickedCol; i++) {
+          newGrid[rowStart + i - 1] = newGrid[rowStart + i];
+        }
+        newGrid[index] = 0;
       }
-      newGrid[index] = 0;
-    } else {
-      for (let i = emptyCol + 1; i <= clickedCol; i++) {
-        newGrid[rowStart + i - 1] = newGrid[rowStart + i];
+      
+      setGrid(newGrid);
+      
+      if (checkWin(newGrid)) {
+        setIsModalOpen(true);
       }
-      newGrid[index] = 0;
+      return;
     }
     
-    setGrid(newGrid);
-    
-    if (checkWin(newGrid)) {
-      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
-    }
-    return;
-  }
-  
-  if (clickedCol === emptyCol) {
-    const newGrid = [...grid];
-    
-    if (clickedRow < emptyRow) {
-      for (let i = emptyRow - 1; i >= clickedRow; i--) {
-        newGrid[(i + 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+    if (clickedCol === emptyCol) {
+      const newGrid = [...grid];
+      
+      if (clickedRow < emptyRow) {
+        for (let i = emptyRow - 1; i >= clickedRow; i--) {
+          newGrid[(i + 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+        }
+        newGrid[index] = 0;
+      } else {
+        for (let i = emptyRow + 1; i <= clickedRow; i++) {
+          newGrid[(i - 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+        }
+        newGrid[index] = 0;
       }
-      newGrid[index] = 0;
-    } else {
-      for (let i = emptyRow + 1; i <= clickedRow; i++) {
-        newGrid[(i - 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+      
+      setGrid(newGrid);
+      
+      if (checkWin(newGrid)) {
+        setIsModalOpen(true);
       }
+      return;
+    }
+    
+    const distance = Math.abs(index - emptyIndex);
+    const sameRow = clickedRow === emptyRow;
+    const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
+    
+    if (isAdjacent) {
+      const newGrid = [...grid];
+      newGrid[emptyIndex] = grid[index];
       newGrid[index] = 0;
-    }
-    
-    setGrid(newGrid);
-    
-    if (checkWin(newGrid)) {
-      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
-    }
-    return;
-  }
-  
-  const distance = Math.abs(index - emptyIndex);
-  const sameRow = clickedRow === emptyRow;
-  const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
-  
-  if (isAdjacent) {
-    const newGrid = [...grid];
-    newGrid[emptyIndex] = grid[index];
-    newGrid[index] = 0;
-    setGrid(newGrid);
+      setGrid(newGrid);
 
-    if (checkWin(newGrid)) {
-      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
+      if (checkWin(newGrid)) {
+        setIsModalOpen(true);
+      }
     }
-  }
-};
+  };
 
   return (
     <div className={styles.container}>
@@ -136,6 +139,16 @@ const handleTileClick = (index: number) => {
         </Box>
         <Button variant='l' onClick={shuffleGrid}>Randomize</Button>
       </div>
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        title="You solved the puzzle!!!"
+      >
+        <Button variant='s' onClick={shuffleGrid}>
+          Play again
+        </Button>
+      </Modal>
     </div>
   );
 }
