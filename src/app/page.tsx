@@ -132,12 +132,19 @@ export default function Home() {
               variant='m'
               onClick={() => handleTileClick(index)}
               disabled={value === 0}
+              aria-label={value === 0 ? 'Empty space' : `Tile ${value}`}
             >
               {value === 0 ? '' : value}
             </Button>
           ))}
         </Box>
-        <Button variant='l' onClick={shuffleGrid}>Randomize</Button>
+        <Button 
+          variant='l' 
+          onClick={shuffleGrid}
+          aria-label="Shuffle puzzle tiles"
+        >
+          Randomize
+        </Button>
       </div>
 
       <Modal 
@@ -145,7 +152,11 @@ export default function Home() {
         onClose={() => setIsModalOpen(false)}
         title="You solved the puzzle!!!"
       >
-        <Button variant='s' onClick={shuffleGrid}>
+        <Button 
+          variant='s' 
+          onClick={shuffleGrid}
+          aria-label="Start a new puzzle game"
+        >
           Play again
         </Button>
       </Modal>

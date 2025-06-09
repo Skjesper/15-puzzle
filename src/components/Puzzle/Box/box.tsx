@@ -15,7 +15,12 @@ const Box: React.FC<BoxProps> = ({ children }) => {
     } as React.CSSProperties;
 
     return (
-        <div className={styles.box} style={boxStyle}>
+        <div 
+            className={styles.box} 
+            style={boxStyle}
+            role="grid"
+            aria-label="Sliding puzzle grid"
+        >
             {children}
         </div>
     );
