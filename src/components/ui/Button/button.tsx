@@ -6,19 +6,32 @@ interface ButtonProps {
     variant?: 's' | 'm' | 'l';
     onClick?: () => void;
     disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
+    'aria-label'?: string;
+    'aria-describedby'?: string;
+    className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
     children,
     variant = 'm',
     onClick,
-    disabled = false
+    disabled = false,
+    type = 'button',
+    'aria-label': ariaLabel,
+    'aria-describedby': ariaDescribedBy,
+    className
 }) => {
+  const buttonClasses = `${styles.button} ${styles[variant]} ${className || ''}`.trim();
+
   return (
     <button 
-      className={`${styles.button} ${styles[variant]}`}
+      type={type}
+      className={buttonClasses}
       onClick={onClick}
-       disabled={disabled}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
     >
       {children}
     </button>
