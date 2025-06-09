@@ -1,0 +1,73 @@
+
+
+.modalContainer {
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 90vw; 
+max-width: 21rem; 
+ height: auto;    
+min-height: 10rem;
+background-color: #ffb3ba;
+border-radius: 16px;
+border: 2.5px solid #333; 
+  
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1.8rem;
+
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.closeButton {
+  position: absolute; 
+  top: 15px;        
+  right: 15px;        
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;   
+}
+
+.content {
+  padding: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+   .modalContainer {
+
+        max-width: 26rem; 
+        min-height: 15rem;
+   }
+
+   .title {
+
+    font-size: 1.7rem;
+   }
+}
