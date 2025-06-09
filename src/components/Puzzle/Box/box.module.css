@@ -9,6 +9,16 @@
   
 }
 
+@media (min-width: 480px) {
+   .box {
+    grid-template-columns: repeat(var(--grid-cols), 4rem);
+    grid-template-rows: repeat(var(--grid-rows), 4rem);
+    gap: 10px;
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+}
+
 @media (min-width: 768px) {
    .box {
     grid-template-columns: repeat(var(--grid-cols), 5rem);
