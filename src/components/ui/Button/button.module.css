@@ -60,6 +60,11 @@
 
 @media (min-width: 1280px) {
    
+    .button{
+
+       border: 2.5px solid #333;
+       font-size: 3rem;
+   }
 }
 
 
