@@ -35,7 +35,7 @@ export default function Home() {
   };
   
   const [grid, setGrid] = useState<number[]>(createInitialGrid());
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   useEffect(() => {
     const orderedGrid = [];
