@@ -81,8 +81,16 @@
 }
 
 @media (min-width: 1600px) {
+
+   .m {
+
+    font-size: 4rem;
+   }
+    
   .l {
     font-size: 3rem;
   }
+
+  
 
 }
