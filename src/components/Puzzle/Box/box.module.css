@@ -6,11 +6,10 @@
   padding: 0.8rem;
   background-color: #ffb3ba;
   border-radius: 5px;
-  
 }
 
 @media (min-width: 480px) {
-   .box {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 4rem);
     grid-template-rows: repeat(var(--grid-rows), 4rem);
     gap: 10px;
@@ -20,49 +19,39 @@
 }
 
 @media (min-width: 768px) {
-   .box {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 5rem);
     grid-template-rows: repeat(var(--grid-rows), 5rem);
     gap: 12px;
     padding: 1.5rem;
     border-radius: 16px;
-
   }
 }
 
- @media (min-width: 1024px) {
- 
-   .box {
+@media (min-width: 1024px) {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 6rem);
     grid-template-rows: repeat(var(--grid-rows), 6rem);
-   
-
   }
-} 
+}
 
 @media (min-width: 1280px) {
-   .box {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 6.5rem);
     grid-template-rows: repeat(var(--grid-rows), 6.5rem);
-   
-
   }
 }
 
 @media (min-width: 1440px) {
-   .box {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 7rem);
     grid-template-rows: repeat(var(--grid-rows), 7rem);
-    
-
   }
 }
 
 @media (min-width: 1600px) {
-   .box {
+  .box {
     grid-template-columns: repeat(var(--grid-cols), 10rem);
     grid-template-rows: repeat(var(--grid-rows), 10rem);
-    
-
   }
 }

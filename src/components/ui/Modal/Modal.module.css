@@ -22,13 +22,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90vw; 
-  max-width: 21rem; 
-  height: auto;    
+  width: 90vw;
+  max-width: 21rem;
+  height: auto;
   padding: 2rem 1.5rem;
   background-color: #ffb3ba;
   border-radius: 16px;
-  border: 2.5px solid #333; 
+  border: 2.5px solid #333;
 }
 
 .header {
@@ -45,38 +45,50 @@
 }
 
 .closeButton {
-  position: absolute; 
-  top: 15px;        
-  right: 15px;        
+  position: absolute;
+  top: 15px;
+  right: 15px;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 1001;   
+  z-index: 1001;
+  border-radius: 4px;
+  padding: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.closeButton:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
 
 .content {
-  padding: 1rem 0 0 0;
+  padding-top: 1rem;
 }
 
 @media (min-width: 768px) {
-   .modalContainer {
-        max-width: 26rem; 
-        padding: 2.5rem 2rem;
-   }
+  .modalContainer {
+    max-width: 26rem;
+    padding: 2.5rem 2rem;
+  }
 
-   .title {
-        font-size: 1.7rem;
-   }
+  .title {
+    font-size: 1.7rem;
+  }
 }
 
 @media (min-width: 1600px) {
-   .modalContainer {
-        max-width: 40rem; 
-        padding: 4rem 3rem;
-   }
+  .modalContainer {
+    max-width: 40rem;
+    padding: 4rem 3rem;
+  }
 
-   .title {
-        font-size: 2.7rem;
-   }
+  .title {
+    font-size: 2.7rem;
+  }
 }
