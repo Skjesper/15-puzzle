@@ -41,6 +41,7 @@ border: 2.5px solid #333;
 .title {
   margin: 0;
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .closeButton {
@@ -55,8 +56,8 @@ border: 2.5px solid #333;
 }
 
 .content {
-  padding: 1rem;
-  text-align: center;
+  padding: 0.5rem;
+ 
 }
 
 @media (min-width: 768px) {
@@ -69,5 +70,18 @@ border: 2.5px solid #333;
    .title {
 
     font-size: 1.7rem;
+   }
+}
+
+@media (min-width: 1600px) {
+   .modalContainer {
+
+        max-width: 40rem; 
+        min-height: 25rem;
+   }
+
+   .title {
+
+    font-size: 2.7rem;
    }
 }

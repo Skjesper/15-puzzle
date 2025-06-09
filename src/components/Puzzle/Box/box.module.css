@@ -1,8 +1,8 @@
 .box {
   display: grid;
-  grid-template-columns: repeat(var(--grid-cols), 3rem);
-  grid-template-rows: repeat(var(--grid-rows), 3rem);
-  gap: 7px;
+  grid-template-columns: repeat(var(--grid-cols), 2.5rem);
+  grid-template-rows: repeat(var(--grid-rows), 2.5rem);
+  gap: 5px;
   padding: 0.8rem;
   background-color: #ffb3ba;
   border-radius: 5px;
@@ -43,6 +43,15 @@
    .box {
     grid-template-columns: repeat(var(--grid-cols), 7rem);
     grid-template-rows: repeat(var(--grid-rows), 7rem);
+    
+
+  }
+}
+
+@media (min-width: 1600px) {
+   .box {
+    grid-template-columns: repeat(var(--grid-cols), 10rem);
+    grid-template-rows: repeat(var(--grid-rows), 10rem);
     
 
   }

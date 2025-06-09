@@ -35,15 +35,20 @@
 }
 
 @media (min-width: 768px) {
+    .s {
+         padding: 0.8rem;
+         font-size: 1.5rem; 
+    }
    .m {
        border: 2.5px solid #333;
        font-size: 2rem;
    }
 
-   .s {
-        padding: 0.8rem;
-        font-size: 1.5rem; /* Fast storlek för alla icke-mobil */
+   .l {
+
+     font-size: 2rem;
    }
+
 }
 
 @media (min-width: 1024px) {
@@ -59,4 +64,13 @@
        font-size: 3rem;
    }
    
+}
+
+@media (min-width: 1600px) {
+
+     .l {
+
+     font-size: 3rem;
+     border: 2.5px solid #333;
+   }
 }
