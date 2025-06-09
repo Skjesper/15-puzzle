@@ -48,24 +48,76 @@ export default function Home() {
     setGrid(shuffleArray([...grid]));
   };
 
-  const handleTileClick = (index: number) => {
-    const emptyIndex = grid.findIndex(value => value === 0);
+const handleTileClick = (index: number) => {
+  const emptyIndex = grid.findIndex(value => value === 0);
+  
+  const clickedRow = Math.floor(index / COLS);
+  const emptyRow = Math.floor(emptyIndex / COLS);
+  const clickedCol = index % COLS;
+  const emptyCol = emptyIndex % COLS;
+  
+  if (clickedRow === emptyRow) {
+    const newGrid = [...grid];
+    const rowStart = clickedRow * COLS;
     
-    const distance = Math.abs(index - emptyIndex);
-    const sameRow = Math.floor(index / COLS) === Math.floor(emptyIndex / COLS);
-    const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
-    
-    if (isAdjacent) {
-      const newGrid = [...grid];
-      newGrid[emptyIndex] = grid[index];
-      newGrid[index] = 0;
-      setGrid(newGrid);
-
-      if (checkWin(newGrid)) {
-        alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
+    if (clickedCol < emptyCol) {
+      for (let i = emptyCol - 1; i >= clickedCol; i--) {
+        newGrid[rowStart + i + 1] = newGrid[rowStart + i];
       }
+      newGrid[index] = 0;
+    } else {
+      for (let i = emptyCol + 1; i <= clickedCol; i++) {
+        newGrid[rowStart + i - 1] = newGrid[rowStart + i];
+      }
+      newGrid[index] = 0;
     }
-  };
+    
+    setGrid(newGrid);
+    
+    if (checkWin(newGrid)) {
+      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
+    }
+    return;
+  }
+  
+  if (clickedCol === emptyCol) {
+    const newGrid = [...grid];
+    
+    if (clickedRow < emptyRow) {
+      for (let i = emptyRow - 1; i >= clickedRow; i--) {
+        newGrid[(i + 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+      }
+      newGrid[index] = 0;
+    } else {
+      for (let i = emptyRow + 1; i <= clickedRow; i++) {
+        newGrid[(i - 1) * COLS + clickedCol] = newGrid[i * COLS + clickedCol];
+      }
+      newGrid[index] = 0;
+    }
+    
+    setGrid(newGrid);
+    
+    if (checkWin(newGrid)) {
+      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
+    }
+    return;
+  }
+  
+  const distance = Math.abs(index - emptyIndex);
+  const sameRow = clickedRow === emptyRow;
+  const isAdjacent = (distance === 1 && sameRow) || distance === COLS;
+  
+  if (isAdjacent) {
+    const newGrid = [...grid];
+    newGrid[emptyIndex] = grid[index];
+    newGrid[index] = 0;
+    setGrid(newGrid);
+
+    if (checkWin(newGrid)) {
+      alert('Congratz, you solved a very complicated puzzle! Press the randomize button to play again');
+    }
+  }
+};
 
   return (
     <div className={styles.container}>
