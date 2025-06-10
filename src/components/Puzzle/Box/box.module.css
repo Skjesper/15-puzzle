@@ -30,7 +30,7 @@
     grid-template-columns: repeat(var(--grid-cols), minmax(4rem, 1fr));
     grid-template-rows: repeat(var(--grid-rows), minmax(4rem, 1fr));
     gap: 10px;
-    /* padding: 2rem; */
+    padding: 2rem;
     border-radius: 16px;
   }
 }
@@ -40,7 +40,7 @@
     grid-template-columns: repeat(var(--grid-cols), minmax(5rem, 1fr));
     grid-template-rows: repeat(var(--grid-rows), minmax(5rem, 1fr));
     gap: 12px;
-    padding: 3rem;
+   
     
   }
 }
