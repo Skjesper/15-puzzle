@@ -26,7 +26,7 @@
   max-width: 21rem;
   height: auto;
   padding: 2rem 1.5rem;
-  background-color: #ffb3ba;
+  background-color: var(--box-bg);
   border-radius: 16px;
   border: 2.5px solid #333;
 }

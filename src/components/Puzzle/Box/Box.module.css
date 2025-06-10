@@ -4,7 +4,7 @@
   grid-template-rows: repeat(var(--grid-rows), minmax(2rem, 1fr));
   gap: 5px;
   padding: 0.8rem;
-  background-color: #ffb3ba;
+  background-color: var(--box-bg);
   border-radius: 5px;
   max-width: min(90vw, 80vh);
   max-height: min(90vh, 80vw);
@@ -40,7 +40,6 @@
     
   }
 }
-
 @media (min-width: 1280px) {
   .box {
     grid-template-columns: repeat(var(--grid-cols), minmax(6rem, 1fr));

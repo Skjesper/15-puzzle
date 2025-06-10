@@ -1,6 +1,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --button-bg: #ff1f1f;
+  --box-bg: #ffb3ba;
+  --button-focus:#0066cc;
+
 }
 
 @media (prefers-color-scheme: dark) {
