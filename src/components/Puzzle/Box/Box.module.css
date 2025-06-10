@@ -6,12 +6,8 @@
   padding: 0.8rem;
   background-color: #ffb3ba;
   border-radius: 5px;
-  
-  
   max-width: min(90vw, 80vh);
   max-height: min(90vh, 80vw);
-  
-
   aspect-ratio: var(--grid-cols) / var(--grid-rows);
 }
 
