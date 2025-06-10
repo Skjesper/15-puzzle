@@ -2,9 +2,9 @@
   background-color: #ff1f1f;
   border-radius: 5px;
   border: 1.5px solid #333;
-  font-size: 1rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  font-size: 1rem;
 }
 
 .button:hover {
@@ -36,6 +36,7 @@
 .l {
   padding: 0.5rem;
   width: 80%;
+  min-width: fit-content;
 }
 
 @media (min-width: 480px) {
