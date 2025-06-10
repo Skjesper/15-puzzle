@@ -33,8 +33,8 @@
 
 @media (min-width: 1024px) {
   .box {
-    grid-template-columns: repeat(var(--grid-cols), minmax(5rem, 1fr));
-    grid-template-rows: repeat(var(--grid-rows), minmax(5rem, 1fr));
+    grid-template-columns: repeat(var(--grid-cols), minmax(4.5rem, 1fr));
+    grid-template-rows: repeat(var(--grid-rows), minmax(4.5rem, 1fr));
     gap: 12px;
    
     
@@ -42,8 +42,8 @@
 }
 @media (min-width: 1280px) {
   .box {
-    grid-template-columns: repeat(var(--grid-cols), minmax(6rem, 1fr));
-    grid-template-rows: repeat(var(--grid-rows), minmax(6rem, 1fr));
+    grid-template-columns: repeat(var(--grid-cols), minmax(5.5rem, 1fr));
+    grid-template-rows: repeat(var(--grid-rows), minmax(5.5rem, 1fr));
    
   }
 }
