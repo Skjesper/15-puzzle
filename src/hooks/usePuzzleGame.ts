@@ -38,7 +38,7 @@ export const usePuzzleGame = () => {
    }
    orderedGrid.push(0);
    setGrid(shuffleArray(orderedGrid));
- }, [TOTAL_TILES]);
+ }, []);
 
  const shuffleGrid = () => {
    setGrid(shuffleArray([...grid]));
